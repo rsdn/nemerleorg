@@ -1,0 +1,231 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+@section Head
+{
+  <script type="text/javascript" src="/Static/Scripts/jQuery/Plugins/Lightbox/jquery.lightbox-0.5.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#lightboxed').lightBox({
+        imageLoading: '/Static/Images/Lightbox/lightbox-ico-loading.gif',
+        imageBtnPrev: '/Static/Images/Lightbox/lightbox-btn-prev.gif',
+        imageBtnNext: '/Static/Images/Lightbox/lightbox-btn-next.gif',
+        imageBtnClose: '/Static/Images/Lightbox/lightbox-btn-close.gif',
+        imageBlank: '/Static/Images/Lightbox/lightbox-blank.gif'
+      });
+    });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/Static/Styles/jquery.lightbox-0.5.css" />
+}
+<iframe allowtransparency="true" show_count="true" frameborder="0" scrolling="no"
+  src="http://platform.twitter.com/widgets/follow_button.html?screen_name=nemerle"
+  style="width:200px; height:31px;"></iframe>
+<iframe src="http://www.facebook.com/plugins/like.php?href=http://nemerle.org&show_faces=no"
+    scrolling="no" frameborder="0" style="border:none; width:450px; height:35px;">
+</iframe>
+<!--<h1>About</h1>-->
+<div class="epigraph">Programming language for "special forces" of developers.</div>
+<table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>
+            <div class="contents">
+                <a href="#ID0EZD"><b>General information</b></a><br>
+                <a href="#ID0ESG"><b>Key features</b></a><br>
+                <div style="margin-left:2em;margin-bottom:0px;">
+                    <a href="#ID0EWG">Type inference</a><br>
+                    <a href="#ID0E6G">Metaprogramming</a><br>
+                    <a href="#ID0EIH">Object-oriented programming </a><br>
+                    <a href="#ID0ERH">Functional programming </a>
+                </div>
+                <a href="#ID0EPAAC"><b>IDE support</b></a><br>
+                <a href="#ID0E3AAC"><b>Macro Libraries</b></a><br>
+                <div style="margin-left:2em">
+                    <a href="#ID0EEBAC">Nemerle.Peg </a><br>
+                    <a href="#ID0EACAC">Nemerle.Xml (XML-literals)</a><br>
+                    <a href="#ID0EHCAC">Computation Expressions</a><br>
+                    <a href="#ID0EOCAC">Nemerle on Rails</a><br>
+                    <a href="#ID0EVCAC">as well as…</a>
+                </div><br>
+            </div>
+        </td>
+        <td width="100px">
+            <br/>
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        <a href="https://github.com/downloads/rsdn/nemerle/NemerleSetup-net-4.0-v1.1.746.0.msi"><img src="/Static/Uploads/about/button-download.png"></img></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://github.com/rsdn/nemerle/downloads"><img src="/Static/Uploads/about/button-check-other-downloads.png"></img></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="http://ideone.com/Y8Mhp"><img src="/Static/Uploads/about/button-try-nemerle-online.png"></img></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="http://nemerle.org/wiki/index.php?title=Language"><img src="/Static/Uploads/about/button-read-complete-reference.png"></img></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://github.com/rsdn/nemerle"><img src="/Static/Uploads/about/button-browse-sources.png"></img></a>
+                    </td>
+                </tr>
+            </table>
+    </td>
+</table>
+<p>Nemerle is a general-purpose, multi-paradigm programming language for the .Net platform. It is as easy to learn and use as C# or VB.NET but Nemerle is by far more powerful. One may start using it as an advanced C# and then, as learning goes on, employ a range of cool features enabling metaprogramming and functional programming. The metaprogramming is based on macros bearing some similarity to Lisp.</p>
+<h2>General information<a name="ID0EZD"></a></h2>    
+    <p>
+      <strong>Supported paradigms</strong>: <a href="http://en.wikipedia.org/wiki/Object-oriented_programming" target="_blank">Object-Oriented Programming</a> (OOP), <a href="http://en.wikipedia.org/wiki/Functional_Programming" target="_blank">Functional Programming</a> (FP), <a href="http://en.wikipedia.org/wiki/Metaprogramming" target="_blank">Metaprogramming</a> (MP), <a href="http://en.wikipedia.org/wiki/Component-oriented_programming" target="_blank">Component-Oriented Programming</a> (COP), <a href="http://en.wikipedia.org/wiki/Domain-specific_language" target="_blank">DSL-Oriented Programming</a> (DOP) or <a href="http://en.wikipedia.org/wiki/Language-oriented_programming" target="_blank">Language Oriented Programming</a> (LOP).</p>
+    <p>
+      <strong>Type system</strong>: <a href="http://en.wikipedia.org/wiki/Static_typing" target="_blank">static typing</a>, <a href="http://en.wikipedia.org/wiki/Strong_typing" target="_blank">strong typing</a>, <a href="http://en.wikipedia.org/wiki/Inferred_typing" target="_blank">inferred</a>, <a href="http://en.wikipedia.org/wiki/Nominative_type_system" target="_blank">nominal</a>.</p>
+    <p>
+      <strong>Influenced by</strong>: <a href="http://en.wikipedia.org/wiki/C_Sharp_(programming_language)" target="_blank">C#</a> (OOP &amp; Imperative support), <a href="http://en.wikipedia.org/wiki/ML_(programming_language)" target="_blank">ML</a> (FP support), <a href="http://en.wikipedia.org/wiki/Lisp_(programming_language)" target="_blank">Lisp</a> (macros support).</p>
+    <p>
+      <strong>Supported Platforms</strong>: <a href="http://en.wikipedia.org/wiki/Common_Language_Infrastructure" target="_blank">CLI</a> (<a href="http://en.wikipedia.org/wiki/.NET_Framework" target="_blank">.Net</a> &amp; <a href="http://en.wikipedia.org/wiki/Mono_(software)" target="_blank">Mono</a>).</p>
+  <h2>Key features<a name="ID0ESG"></a></h2>
+    
+    <h3>Type inference<a name="ID0EWG"></a></h3>
+    <p>Nemerle can infer type from initialization and from usage:</p>
+    <div id="ID0E3G">
+        <pre class="prettyprint lang-nemerle">
+def dict = Dictionary(); // Dude, where are my type params?
+dict.Add("key", 42);     // The type params infered from usage!
+    
+def theType = dict.GetType();
+WriteLine(theType);
+    
+def expected = typeof(Dictionary[string, int]);
+Trace.Assert(theType.Equals(expected));
+        </pre>
+    </div>
+
+    <h3>Metaprogramming<a name="ID0E6G"></a></h3>
+    <p>Flexible and very powerful metaprogramming subsystem using the Nemerle macros:</p>
+    <div id="ID0EFH">
+        <pre class="prettyprint lang-nemerle">
+def title = "Programming language authors";
+def authors = ["Anders Hejlsberg", "Simon Peyton-Jones"];
+    
+// 'xml' - macro from Nemerle.Xml.Macro library which alows to inline XML literals into the nemerle-code
+def html = xml &lt;#<span class="nocode">
+  &lt;html&gt;
+    &lt;head&gt;
+      &lt;title&gt;$title&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;ul $when(authors.Any())&gt;
+        &lt;li $foreach(author in authors)&gt;$author&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/body&gt;
+  &lt;/html&gt;
+</span>#&gt;
+Trace.Assert(html.GetType().Equals(typeof(XElement)));
+WriteLine(html.GetType());
+        </pre>
+    </div>
+
+    <h3>Object-oriented programming <a name="ID0EIH"></a></h3>
+    <p>Full support for OOP that will be familiar to C# / Java / C++ programmers:</p>
+    <div id="ID0EOH">
+        <pre class="prettyprint lang-nemerle">
+module Program
+{
+  class Initializer
+  {
+    public Name : string { get; set; }
+    public event HelloHandler : Action[string];
+    
+    public SayHello() : void 
+    {
+      HelloHandler($"Hello, $Name!");
+    }
+    
+    public static Test() : void
+    {
+      def hellower = Initializer() &lt;- 
+        {
+          Name = "David Hilbert";
+          HelloHandler += Console.WriteLine;
+        };
+
+      hellower.SayHello();
+    }
+  }
+
+  Main() : void
+  {
+    Initializer.Test();
+  }
+}</pre></div>
+<h3>Functional programming <A name="ID0ERH"></a></h3>
+<p>Full support for functional programming inherited from the ML family of languages (ML, OCaml, F#, Haskell) and can solve problems not only quick and easy but also very beautiful.</p>
+<ul style="list-style:square">
+    <li>higher-order functions;</li>
+    <li>local functions;</li>
+    <li>lambdas;</li>
+    <li>tail-call elimination optimization;</li>
+    <li>pattern matching;</li>
+    <li>algebraic types;</li>
+    <li>tuples and anonymous types;</li>
+    <li>partial application of functions.</li>
+</ul><br>
+<div id="ID0ELAAC">
+    <pre class="prettyprint lang-nemerle">
+def factorial(n, acc)
+{
+  | (0, _)
+  | (1, _) =&gt; acc
+  | _      =&gt; factorial(n - 1, n * acc)
+}
+def partedFactorial = factorial(_, 1);
+Console.WriteLine(partedFactorial(5));
+    </pre>
+</div>
+
+<h2>IDE support<a name="ID0EPAAC"></a></h2>
+<p>
+The presence of integration with VS 2008 (support of VS 2010 under development) and Sharp Develop allows reducing the threshold of entry. You can start developing Nemerle programs right away using Microsoft Visual Studio 2008 or SharpDevelop. Current Nemerle Studio IDE integration supports all language features including information about derived types and macro expansion. <a href="/Static/Uploads/about/vs2k8-integration-screenshot.png" id="lightboxed"> [Screenshot]</a>
+</p>
+
+<h2>Macro Libraries<A name="ID0E3AAC"></a></h2>
+<p>Macros allow you to raise the level of the program to unprecedented heights without sacrificing the richness of the language’s syntax as in Lisp. You can develop macros which simplify a solution of your every day tasks. One of the Nemerle paradigms is the Language-Oriented Programming (LOP). It’s a new approach of software development. The LOP allows you to create your own domain specific language (DSL) to solve the problem by describing it in completely declarative manner. Macros allow you to implement and maintain DSL. Macros allow getting automatic support for IDE much faster and easier. Using macros you get high speed of the generated code, etc.</p>
+<p>The standard distribution of Nemerle’s compiler includes a lot of ready-to-use macros which can be easily extended by third-party developers. The following outstanding solutions were implemented with the help of Nemerle’s macros:</p>
+
+<h3>Nemerle.Peg <A name="ID0EEBAC"></a></h3>
+<p>Implements a generator of parsers based on the PEG notation. It has notable advantages: </p>
+<ul style="list-style:square">
+    <li>ease of use (using of Nemerle.Peg is as easy as using of regular expressions);</li>
+    <li>an incredibly high speed of work of produced parser — ~ 4 MB / sec. on the grammar of C # 4.0 (with the construction of AST);</li>
+    <li>dynamic extensibility (rules of grammar may be included on the fly);</li>
+    <li>support for left recursion and associativity (through intellectual memoization and integration of Pratt’s algorithm);</li>
+    <li>support for syntactic predicates (allows you to easily parse C#\C++ style languages);</li>
+    <li>“Scope” support (allows you to parse a number of context-sensitive languages like C\C++\Nemerle);</li>
+    <li>separation of grammar and semantic actions;</li>
+    <li>IntelliSense (IDE) support (real-time error reporting, navigation).</li>
+</ul>
+<p>Nemerle 2.0 macros system will be based on Nemerle.Peg.</p>
+    
+<h3>Nemerle.Xml (XML-literals)<A name="ID0EACAC"></a></h3>
+<p>Allows using of XML quasi-quotes inside Nemerle-code (XML-literals allow active areas and control structures). This feature is analogous to that in languages like Scala and VB.NET but is available as a separate module (macro) or source code. XML-literals support inline operators: foreach, when and unless.</p>
+<h3>Computation Expressions<A name="ID0EHCAC"></a></h3>
+<p>Gives similar possibility of F# language (Computation Expressions). Such beautiful syntactic sugar (on monads) greatly simplifies the creation of features like “comp async” (parallelization of code execution ) or “comp enumerable” (generating a sequence inside a expression).</p>
+<h3>Nemerle on Rails<A name="ID0EOCAC"></a></h3>
+<p>Library of Nemerle’s macros on Rails (NoR) is analog of Ruby on Rails but in a statically typed language. The world of statically typed languages has the same framework (Scala’s Lift). But the implementation for Nemerle is based on macros and recognized standards such as LINQ.</p>
+<h3>As well as…<A name="ID0EVCAC"></a></h3>
+<p>…many small macros that make the code shorter and clearer: Late (late binding), Lazy (deferred execution), Logging, Profiling, Record (automatic creation of constructors which initialize the fields), Surroundwith (fast creation of operators similar to "using") as well as:</p>
+<ul style="list-style:square">
+    <li>Splice-strings. Ruby style "active" strings that were implemented using macros.</li>
+    <li>LINQ support - this feature is also implemented using macros.</li>
+    <li>Extended operators: <a href="http://groovy.codehaus.org/Operators" target="_blank">Groovy's</a> “safe navigation operator” – “?.”, Swap operator – “&lt;-&gt;”, ....</li>
+    <li>Macro that allows you to walk through a complex data structures. It’s similar to using a visitor pattern but without the manual work.</li>
+    <li>Macros which automate the implementation of OOP design patterns: Abstract factory pattern, Aggregation (Composite), Proxy, Singleton.</li>
+    <li>DependencyProperty – easily helps to implement WPF’s properties.</li>
+    <li>AOP – the support of aspect-oriented programming.</li>
+</ul>

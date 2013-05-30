@@ -1,0 +1,75 @@
+.prettyprint {
+  padding: 2px;
+  border: 4px solid #dddddd;
+  font-family: Consolas, 'Bitstream Vera Sans Mono', 'Courier New', Courier, monospace;
+	font-style: normal;
+	font-weight: normal;
+  position: relative !important;
+	font-size: 12px;
+	white-space: pre;
+	overflow: auto;
+	max-height: 500px;
+	width: 100%;
+	display: block;
+}
+prettyprint.wraplines {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  white-space: pre-wrap; /* css-3 */
+  white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+.prettyprint ol,
+.prettyprint ul {
+	list-style: none;
+  padding: 5px 0;
+}
+.prettyprint ol.linenums {
+	list-style: decimal-leading-zero outside;
+	padding-left: 48px;
+	color:#AFAFAF;
+	font-size:12px;
+  margin-top: 0; 
+  margin-bottom: 0;
+}
+
+
+.prettyprint ol.linenums li {
+	padding-left: 15px;
+	border-left:3px #6CE26C solid;
+        margin-bottom: 0;
+}
+
+.prettyprint li > * {
+	font-size:1em;
+}
+
+/* Alternate shading for lines */
+.prettyprint.alternate li.L1,
+.prettyprint.alternate li.L3,
+.prettyprint.alternate li.L5,
+.prettyprint.alternate li.L7,
+.prettyprint.alternate li.L9 { 
+  background: #FAFAFA; 
+}
+
+.prettyprint .pln { color: black; }  /* plain text */
+
+.prettyprint .str { color: blue; }  /* string content */
+.prettyprint .kwd { color: #006699; font-weight: bold; }  /* a keyword */
+.prettyprint .com { color: #008200; }  /* a comment */
+.prettyprint .typ { color: #606; }  /* a type name */
+.prettyprint .lit { color: #066; }  /* a literal value */
+.prettyprint .pun, /* punctuation */
+.prettyprint .opn, /* lisp open bracket */
+.prettyprint .clo { color: #666; } /* lisp close bracket */
+.prettyprint .tag { color: #006699; font-weight: bold; }  /* a markup tag name */
+.prettyprint .atn { color: gray; }  /* a markup attribute name */
+.prettyprint .atv { color: blue; }  /* a markup attribute value */
+.prettyprint .dec,
+.prettyprint .var { color: #aa7700; }  /* a declaration; a variable name */
+.prettyprint .fun { color: #ff1493; }  /* a function name */
+
+.prettyprint .nocode { color: #808080; /* background-color: #ffe0b3; line-height: 1.0 !important; */ }
