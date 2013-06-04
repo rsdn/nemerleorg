@@ -1,0 +1,10 @@
+﻿@model BuildHistoryViewModel
+@{
+  ViewBag.Title = "Build archive";
+}
+<h2>Build history for v@(Model.Major).@(Model.Minor)</h2>
+@foreach (var versionGroup in Model.Artifacts.GroupBy(_ => _.Version).OrderByDescending(_ => _.Key))
+{
+  <h3>v@(versionGroup.Key)</h3>
+  @Html.Partial("BuildArtifactTable", versionGroup);
+}

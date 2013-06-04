@@ -1,36 +1,11 @@
 ﻿@model DownloadsViewModel
 @{
-    ViewBag.Title = "Downloads";
+  ViewBag.Title = "Downloads";
 }
-@if (Model.RecommendedBuilds.Any())
+<h2>Downloads</h2>
+@foreach (var versionGroup in Model.Artifacts.GroupBy(_ => _.Version).OrderByDescending(_ => _.Key))
 {
-  <h2>Recommended downloads</h2>
-  foreach (var group in Model.RecommendedBuilds.GroupBy(b => Tuple.Create(b.Version.Major, b.Version.Minor)))
-  {
-    <h3>@FormatVersion(group.Key)</h3>
-    <ul>
-    @foreach (var b in group.OrderByDescending(b => b.Version).ThenBy(b => b.Title).ThenBy(b => b.Platform))
-    {
-      <li>@b.Name</li>
-    }
-    </ul>
-  }
-}
-@if (Model.NightlyBuilds.Any())
-{
-  <h2>Nightly builds</h2>
-  foreach (var group in Model.NightlyBuilds.GroupBy(b => Tuple.Create(b.Version.Major, b.Version.Minor)))
-  {
-    <h3>@FormatVersion(group.Key)</h3>
-    <ul>
-    @foreach (var b in group.OrderByDescending(b => b.Version).ThenBy(b => b.Title).ThenBy(b => b.Platform))
-    {
-      <li>@b.Name</li>
-    }
-    </ul>
-  }
-}
-@helper FormatVersion(Tuple<int, int> version)
-{
-  <text>v@(version.Item1).@(version.Item2)</text>
+  <h3>v@(versionGroup.Key)</h3>
+  @Html.Partial("BuildArtifactTable", versionGroup);
+  @Html.ActionLink("[History]", "BuildHistory", "Home", new { major = versionGroup.Key.Major, minor = versionGroup.Key.Minor }, new { })
 }

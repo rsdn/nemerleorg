@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BuildArtifactFile>
+<table class="artifacts">
+<tbody>
+  @foreach (var platformGroup in Model.GroupBy(_ => _.Platform).OrderByDescending(_ => _.Key))
+  {
+    var installer = platformGroup.FirstOrDefault(b => b.Title.Contains("Setup"));
+    var binaries = platformGroup.FirstOrDefault(b => b.Title.Contains("Binaries"));
+    if (installer != null || binaries != null)
+    {
+      <tr>
+        @if (installer != null)
+        {
+          <td>@FormatInstallerLink(installer)</td>
+        }
+        else
+        {
+          <td>&nbsp;</td>
+        }
+        @if (binaries != null)
+        {
+          <td>@FormatBinariesLink(binaries)</td>
+        }
+        else
+        {
+          <td>&nbsp;</td>
+        }
+      </tr>
+    }
+  }
+</tbody>
+</table>
+
+@helper FormatInstallerLink(BuildArtifactFile b)
+{
+  switch (b.Platform)
+  {
+    case "net-3.5":
+      <a href="@(VirtualPathUtility.ToAbsolute(b.VirtualPath))">Installer for .NET 3.5 / VisualStudio 2008 (@b.Extention)</a>
+      break;
+
+    case "net-4.0":
+      <a href="@(VirtualPathUtility.ToAbsolute(b.VirtualPath))">Installer for .NET 4.0 / VisualStudio 2010 (@b.Extention)</a>
+      break;
+
+    case "net-4.5":
+      <a href="@(VirtualPathUtility.ToAbsolute(b.VirtualPath))">Installer for .NET 4.5 / VisualStudio 2012 (@b.Extention)</a>
+      break;
+
+    default:
+      <a href="@(VirtualPathUtility.ToAbsolute(b.VirtualPath))">@b.Name</a>
+      break;
+  }
+}
+
+@helper FormatBinariesLink(BuildArtifactFile b)
+{
+  switch (b.Platform)
+  {
+    case "net-3.5":
+      <a href="@(VirtualPathUtility.ToAbsolute(b.VirtualPath))">Binaries for .NET 3.5 (@b.Extention)</a>
+      break;
+
+    case "net-4.0":
+      <a href="@(VirtualPathUtility.ToAbsolute(b.VirtualPath))">Binaries for .NET 4.0 (@b.Extention)</a>
+      break;
+
+    case "net-4.5":
+      <a href="@(VirtualPathUtility.ToAbsolute(b.VirtualPath))">Binaries for .NET 4.5 (@b.Extention)</a>
+      break;
+
+    default:
+      <a href="@(VirtualPathUtility.ToAbsolute(b.VirtualPath))">@b.Name</a>
+      break;
+  }
+}

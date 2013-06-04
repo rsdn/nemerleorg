@@ -15,11 +15,13 @@ namespace NemerleOrg.Code
     public string Extention { get; private set; }
     public string Name { get; private set; }
     public string FilePath { get; private set; }
+    public string VirtualPath { get; private set; }
 
-    public BuildArtifactFile(string filePath)
+    public BuildArtifactFile(string filePath, string baseVirtualPath)
     {
       FilePath = filePath;
       Name = Path.GetFileName(filePath);
+      VirtualPath = Path.Combine(baseVirtualPath, Name);
       Extention = Path.GetExtension(filePath);
       var nameWithoutExtention = Path.GetFileNameWithoutExtension(filePath);
       var matchResult = _pattern.Match(nameWithoutExtention);
@@ -33,6 +35,6 @@ namespace NemerleOrg.Code
       }
     }
 
-    private static readonly Regex _pattern = new Regex("(?<Title>.*?)-(?<Platform>net-.*?)-v(?<Version>.?*)", RegexOptions.Compiled);
+    private static readonly Regex _pattern = new Regex(@"(?<Title>.*?)\-(?<Platform>net-.*?)\-v(?<Version>\d+(\.\d+){3})", RegexOptions.Compiled);
   }
 }

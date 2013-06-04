@@ -157,3 +157,12 @@ strong {
     color: #607d99;
 }
 
+table.artifacts {
+    width: auto;
+}
+table.artifacts td
+{
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+
