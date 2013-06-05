@@ -19,7 +19,7 @@ namespace NemerleOrg.Controllers
         : (t.Length > 64 ? t.Substring(0, 64) : t);
       var gamma = (g ?? "").ToLowerInvariant() == "dark" ? "Dark" : "Light";
       var sha1 = MakeHash(gamma + text);
-      var filePath = Server.MapPath("~/Static/Cache/" + sha1);
+      var filePath = Server.MapPath("~/Static/Cache/" + sha1 + ".png");
       if (!System.IO.File.Exists(filePath))
         MakeBannerFile(filePath, text, gamma);
       return File(filePath, "image/png");
@@ -29,8 +29,8 @@ namespace NemerleOrg.Controllers
     public ActionResult Cache()
     {
       var imageRefs = new List<string>();
-      foreach (var cacheFilePath in Directory.GetFiles(Server.MapPath("~/Static/Cache"), "*."))
-        imageRefs.Add(VirtualPathUtility.ToAbsolute(Path.Combine("~/Static/Cache", Path.GetFileName(cacheFilePath))));
+      foreach (var cacheFilePath in Directory.GetFiles(Server.MapPath(BannerCacheDirectory), "*.png"))
+        imageRefs.Add(VirtualPathUtility.ToAbsolute(Path.Combine(BannerCacheDirectory, Path.GetFileName(cacheFilePath))));
       return View(imageRefs);
     }
 
@@ -94,5 +94,7 @@ namespace NemerleOrg.Controllers
         }
       }
     }
+
+    public const string BannerCacheDirectory = "~/Static/Cache";
   }
 }

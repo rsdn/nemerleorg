@@ -121,6 +121,49 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
+    <Content Include="Static\Images\About\button-browse-sources.png" />
+    <Content Include="Static\Images\About\button-check-other-downloads.png" />
+    <Content Include="Static\Images\About\button-download.png" />
+    <Content Include="Static\Images\About\button-read-complete-reference.png" />
+    <Content Include="Static\Images\About\button-try-nemerle-online.png" />
+    <Content Include="Static\Images\About\vs2k8-integration-screenshot.png" />
+    <Content Include="Static\Images\body-background.png" />
+    <Content Include="Static\Images\Dark\Background_Left.png" />
+    <Content Include="Static\Images\Dark\Background_Middle.png" />
+    <Content Include="Static\Images\Dark\Background_Right.png" />
+    <Content Include="Static\Images\Dark\Glyphs.png" />
+    <Content Include="Static\Images\Dark\Title.png" />
+    <Content Include="Static\Images\footer-background.png" />
+    <Content Include="Static\Images\header-background.png" />
+    <Content Include="Static\Images\Icons\navigation.png" />
+    <Content Include="Static\Images\Lightbox\lightbox-blank.gif" />
+    <Content Include="Static\Images\Lightbox\lightbox-btn-close.gif" />
+    <Content Include="Static\Images\Lightbox\lightbox-btn-next.gif" />
+    <Content Include="Static\Images\Lightbox\lightbox-btn-prev.gif" />
+    <Content Include="Static\Images\Lightbox\lightbox-ico-loading.gif" />
+    <Content Include="Static\Images\Light\Background_Left.png" />
+    <Content Include="Static\Images\Light\Background_Middle.png" />
+    <Content Include="Static\Images\Light\Background_Right.png" />
+    <Content Include="Static\Images\Light\Glyphs.png" />
+    <Content Include="Static\Images\Light\Title.png" />
+    <Content Include="Static\Images\logo.png" />
+    <Content Include="Static\Images\menuitem-about-active-foreground.png" />
+    <Content Include="Static\Images\menuitem-about-inactive-foreground.png" />
+    <Content Include="Static\Images\menuitem-active-background.png" />
+    <Content Include="Static\Images\menuitem-downloads-inactive-foreground.png" />
+    <Content Include="Static\Images\menuitem-forum-inactive-foreground.png" />
+    <Content Include="Static\Images\menuitem-inactive-background.png" />
+    <Content Include="Static\Images\menuitem-search-inactive-foreground.png" />
+    <Content Include="Static\Images\menuitem-wiki-inactive-foreground.png" />
+    <Content Include="Static\Images\ribbon.png" />
+    <Content Include="Static\Images\shadow-background.png" />
+    <Content Include="Static\Images\shadow-foreground.png" />
+    <Content Include="Static\Scripts\jQuery\jquery-1.4.2.min.js" />
+    <Content Include="Static\Scripts\jQuery\Plugins\Lightbox\jquery.lightbox-0.5.min.js" />
+    <Content Include="Static\Scripts\jQuery\Plugins\Prettify\jquery.prettify.js" />
+    <Content Include="Static\Scripts\jQuery\Plugins\Prettify\Themes\theme-default.css" />
+    <Content Include="Static\Styles\jquery.lightbox-0.5.css" />
+    <Content Include="Static\Styles\style.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -134,6 +177,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Static\Cache\" />
+    <Folder Include="Static\Downloads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

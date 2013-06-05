@@ -21,7 +21,7 @@ namespace NemerleOrg.Controllers
     [HttpGet]
     public ActionResult About()
     {
-      var artifacts = GetArtifacts(_artifactsStoragePath);
+      var artifacts = GetArtifacts(ArtifactsStoragePath);
       BuildArtifactFile defaultDownload = null;
       foreach (var b in artifacts)
       {
@@ -40,7 +40,7 @@ namespace NemerleOrg.Controllers
     [HttpGet]
     public ActionResult Downloads()
     {
-      var artifacts = GetArtifacts(_artifactsStoragePath)
+      var artifacts = GetArtifacts(ArtifactsStoragePath)
         .GroupBy(b => Tuple.Create(b.Version.Major, b.Version.Minor))
         .SelectMany(g =>
           {
@@ -67,7 +67,7 @@ namespace NemerleOrg.Controllers
     [HttpGet]
     public ActionResult BuildHistory(int major, int minor)
     {
-      var artifacts = GetArtifacts(_artifactsStoragePath)
+      var artifacts = GetArtifacts(ArtifactsStoragePath)
         .Where(b => b.Version.Major == major && b.Version.Minor == minor)
         .ToArray();
       if (artifacts.Length > 0)
@@ -98,6 +98,6 @@ namespace NemerleOrg.Controllers
       return result;
     }
 
-    private const string _artifactsStoragePath = "~/Static/Downloads";
+    public const string ArtifactsStoragePath = "~/Static/Downloads";
   }
 }

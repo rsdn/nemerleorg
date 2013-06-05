@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using NemerleOrg.Controllers;
+using System.IO;
 
 namespace NemerleOrg
 {
@@ -15,6 +17,15 @@ namespace NemerleOrg
     protected void Application_Start()
     {
       AreaRegistration.RegisterAllAreas();
+
+      var artifactStorageDirectory = Server.MapPath(HomeController.ArtifactsStoragePath);
+      if (!Directory.Exists(artifactStorageDirectory))
+        Directory.CreateDirectory(artifactStorageDirectory);
+
+      var bannerCacheDirectory = Server.MapPath(BannersController.BannerCacheDirectory);
+      if (!Directory.Exists(bannerCacheDirectory))
+        Directory.CreateDirectory(bannerCacheDirectory);
+
 
       WebApiConfig.Register(GlobalConfiguration.Configuration);
       FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
