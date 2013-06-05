@@ -1,0 +1,10 @@
+﻿@model IEnumerable<string>
+@{
+  ViewBag.Title = "Banner cache";
+}
+<p>
+@foreach (var imageRef in Model)
+{
+  <img src="@imageRef"></img>
+}
+</p>
