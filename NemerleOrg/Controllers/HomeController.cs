@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using NemerleOrg.Models;
 using System.IO;
 using NemerleOrg.Code;
+using System.Web.Caching;
 
 namespace NemerleOrg.Controllers
 {
@@ -20,7 +21,20 @@ namespace NemerleOrg.Controllers
     [HttpGet]
     public ActionResult About()
     {
-      return View();
+      var artifacts = GetArtifacts(_artifactsStoragePath);
+      BuildArtifactFile defaultDownload = null;
+      foreach (var b in artifacts)
+      {
+        if (b.Platform == "net-4.0" && b.Title.Contains("Setup"))
+        {
+          if (defaultDownload == null || defaultDownload.Version < b.Version)
+            defaultDownload = b;
+        }
+      }
+      return View(new AboutViewModel
+      {
+        DefaultDownload = defaultDownload
+      });
     }
 
     [HttpGet]
@@ -68,11 +82,20 @@ namespace NemerleOrg.Controllers
 
     private BuildArtifactFile[] GetArtifacts(string virtualPath)
     {
+      var cacheKey = "HomeController.GetArtifacts " + virtualPath;
+      var cachedResult = HttpContext.Cache.Get(cacheKey);
+      if (cachedResult != null)
+        return (BuildArtifactFile[])cachedResult;
+
       var physicalPath = this.HttpContext.Server.MapPath(virtualPath);
-      return Directory.GetFiles(physicalPath)
+      var result = Directory.GetFiles(physicalPath)
         .Select(filePath => new BuildArtifactFile(filePath, virtualPath))
         .Where(b => !string.IsNullOrEmpty(b.Title) && b.Version != null)
         .ToArray();
+
+      HttpContext.Cache.Insert(cacheKey, result, new CacheDependency(physicalPath));
+
+      return result;
     }
 
     private const string _artifactsStoragePath = "~/Static/Downloads";
