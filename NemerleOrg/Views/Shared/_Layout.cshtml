@@ -6,20 +6,16 @@
   <script type="text/javascript" src="/Static/Scripts/jQuery/jquery-1.4.2.min.js"></script>
   <script type="text/javascript" src="/Static/Scripts/jQuery/Plugins/Prettify/jquery.prettify.js"></script>
   <script type="text/javascript">
-    $(document).ready(function () {
+    $(function () {
       $.prettify({
         'themesUrl': 'Static/Scripts/jQuery/Plugins/Prettify/Themes/',
         'additionalLanguages': ['n'],
         'alternateLines': false
       });
-      $(".underconstruction a").click(function () {
-        alert("New site is still under development. You will be redirected to the old location of requested content...");
-        document.location = $(this).val();
-      });
     });
-    </script>
-    <link type="text/css" rel="stylesheet" href="/Static/Styles/style.css" />
-    @RenderSection("Head", required: false)
+  </script>
+  <link type="text/css" rel="stylesheet" href="/Static/Styles/style.css" />
+  @RenderSection("Head", required: false)
 </head>
 <body>
 <table class="content-layout" border="0" cellpadding="0" cellspacing="0">
@@ -33,10 +29,10 @@
                           <tr>
                               <td width="110px"></td>
                               <td width="170px">
-                                  <a href="./"><img src="/Static/Images/logo.png"></img></a>
+                                  <a href="/"><img src="/Static/Images/logo.png"></img></a>
                               </td>
                               <td width="31px">
-                                  <a href="./"><img src="/Static/Images/ribbon.png"></img></a>
+                                  <a href="/"><img src="/Static/Images/ribbon.png"></img></a>
                               </td>
                               <td align="right" valign="bottom">
                                   <table border="0" cellpadding="0" cellspacing="0" class="menubar">
