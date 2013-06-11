@@ -7,6 +7,7 @@ using System.Web.Caching;
 using System.Web.Mvc;
 using NemerleOrg.Code;
 using NemerleOrg.Models;
+using System.Net.Mime;
 
 namespace NemerleOrg.Controllers
 {
@@ -67,6 +68,16 @@ namespace NemerleOrg.Controllers
     [HttpGet]
     public ActionResult Download(string buildConfiguration, string buildId, string name)
     {
+      if (MvcApplication.TeamCityBuildConfigurations.Any(_ => _ == buildConfiguration))
+      {
+        var bc = GetBuildConfiguration(buildConfiguration);
+        var r = bc.Results.FirstOrDefault(_ => _.BuildId == buildId);
+        if (r != null)
+        {
+          var a = r.Artifacts.FirstOrDefault(_ => _.Name == name);
+          return File(a.FilePath, MediaTypeNames.Application.Octet);
+        }
+      }
       return HttpNotFound();
     }
 
