@@ -56,7 +56,7 @@
                     <td>
                        @{
                          var downloadLink = Model.DefaultDownload != null
-                           ? VirtualPathUtility.ToAbsolute(Model.DefaultDownload.VirtualPath)
+                           ? Url.Action("Download", "Home", new { buildConfiguration = Model.DefaultDownload.BuildResult.Configuration.Name, buildId = Model.DefaultDownload.BuildResult.BuildId, name = Model.DefaultDownload.Name })
                            : "/Downloads";
                        }
                        <a href="@downloadLink"><img src="/Static/Images/About/button-download.png"></img></a>

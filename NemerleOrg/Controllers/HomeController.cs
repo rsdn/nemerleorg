@@ -21,7 +21,7 @@ namespace NemerleOrg.Controllers
     [HttpGet]
     public ActionResult About()
     {
-      var artifacts = GetArtifacts(ArtifactsStoragePath);
+      var artifacts = GetArtifacts();
       BuildArtifactFile defaultDownload = null;
       foreach (var b in artifacts)
       {
@@ -40,7 +40,7 @@ namespace NemerleOrg.Controllers
     [HttpGet]
     public ActionResult Downloads()
     {
-      var artifacts = GetArtifacts(ArtifactsStoragePath)
+      var artifacts = GetArtifacts()
         .GroupBy(b => Tuple.Create(b.Version.Major, b.Version.Minor))
         .SelectMany(g =>
           {
@@ -65,9 +65,15 @@ namespace NemerleOrg.Controllers
     }
 
     [HttpGet]
+    public ActionResult Download(string buildConfiguration, string buildId, string name)
+    {
+      return HttpNotFound();
+    }
+
+    [HttpGet]
     public ActionResult BuildHistory(int major, int minor)
     {
-      var artifacts = GetArtifacts(ArtifactsStoragePath)
+      var artifacts = GetArtifacts()
         .Where(b => b.Version.Major == major && b.Version.Minor == minor)
         .ToArray();
       if (artifacts.Length > 0)
@@ -80,21 +86,37 @@ namespace NemerleOrg.Controllers
       return RedirectToAction("Downloads");
     }
 
-    private BuildArtifactFile[] GetArtifacts(string virtualPath)
+    private BuildArtifactFile[] GetArtifacts()
     {
-      var cacheKey = "HomeController.GetArtifacts " + virtualPath;
+      var cacheKey = "HomeController.GetArtifacts";
       var cachedResult = HttpContext.Cache.Get(cacheKey);
       if (cachedResult != null)
         return (BuildArtifactFile[])cachedResult;
 
-      var physicalPath = this.HttpContext.Server.MapPath(virtualPath);
-      var result = Directory.GetFiles(physicalPath)
-        .Select(filePath => new BuildArtifactFile(filePath, virtualPath))
-        .Where(b => !string.IsNullOrEmpty(b.Title) && b.Version != null)
-        .ToArray();
+      var artifacts = new List<BuildArtifactFile>();
+      foreach (var name in MvcApplication.TeamCityBuildConfigurations)
+      {
+        var buildConfiguration = GetBuildConfiguration(name);
+        foreach (var buildResult in buildConfiguration.Results)
+          foreach (var artifact in buildResult.Artifacts)
+            if (!string.IsNullOrEmpty(artifact.Title) && artifact.Version != null)
+              artifacts.Add(artifact);
+      }
 
-      HttpContext.Cache.Insert(cacheKey, result, new CacheDependency(physicalPath));
+      var result = artifacts.ToArray();
+      HttpContext.Cache.Insert(cacheKey, result, new CacheDependency(MvcApplication.TeamCityProjectPath));
+      return result;
+    }
 
+    private BuildConfiguration GetBuildConfiguration(string name)
+    {
+      var cacheKey = "HomeController.GetBuildConfiguration " + name;
+      var cachedResult = HttpContext.Cache.Get(cacheKey);
+      if (cachedResult != null)
+        return (BuildConfiguration)cachedResult;
+
+      var result = new BuildConfiguration(Path.Combine(MvcApplication.TeamCityProjectPath, name));
+      HttpContext.Cache.Insert(cacheKey, result, new CacheDependency(result.Path));
       return result;
     }
 

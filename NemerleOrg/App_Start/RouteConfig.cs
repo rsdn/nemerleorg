@@ -20,6 +20,12 @@ namespace NemerleOrg
       );
 
       routes.MapRoute(
+          name: "Download",
+          url: "Download/{buildConfiguration}/{buildId}/{name}",
+          defaults: new { controller = "Home", action = "Download" }
+      );
+
+      routes.MapRoute(
           name: "Default",
           url: "{action}/{id}",
           defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

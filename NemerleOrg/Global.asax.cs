@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using NemerleOrg.Controllers;
 using System.IO;
+using System.Configuration;
 
 namespace NemerleOrg
 {
@@ -18,18 +19,27 @@ namespace NemerleOrg
     {
       AreaRegistration.RegisterAllAreas();
 
-      var artifactStorageDirectory = Server.MapPath(HomeController.ArtifactsStoragePath);
-      if (!Directory.Exists(artifactStorageDirectory))
-        Directory.CreateDirectory(artifactStorageDirectory);
-
       var bannerCacheDirectory = Server.MapPath(BannersController.BannerCacheDirectory);
       if (!Directory.Exists(bannerCacheDirectory))
         Directory.CreateDirectory(bannerCacheDirectory);
 
+      TeamCityProjectPath = GetApplicationSetting("TeamCityProjectPath");
+      TeamCityBuildConfigurations = GetApplicationSetting("TeamCityBuildConfigurations").Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
       WebApiConfig.Register(GlobalConfiguration.Configuration);
       FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
       RouteConfig.RegisterRoutes(RouteTable.Routes);
     }
+
+    private string GetApplicationSetting(string key)
+    {
+      var value = ConfigurationManager.AppSettings[key];
+      if (string.IsNullOrEmpty(value))
+        throw new InvalidOperationException(string.Format("Application setting '{0}' is required", key));
+      return value;
+    }
+
+    public static string TeamCityProjectPath { get; private set; }
+    public static string[] TeamCityBuildConfigurations { get; private set; }
   }
 }

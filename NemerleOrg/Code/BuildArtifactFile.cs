@@ -9,19 +9,19 @@ namespace NemerleOrg.Code
 {
   public sealed class BuildArtifactFile
   {
+    public BuildResult BuildResult { get; private set; }
     public string Platform { get; private set; }
     public string Title { get; private set; }
     public Version Version { get; private set; }
     public string Extention { get; private set; }
     public string Name { get; private set; }
     public string FilePath { get; private set; }
-    public string VirtualPath { get; private set; }
 
-    public BuildArtifactFile(string filePath, string baseVirtualPath)
+    public BuildArtifactFile(BuildResult buildResult, string filePath)
     {
+      BuildResult = buildResult;
       FilePath = filePath;
       Name = Path.GetFileName(filePath);
-      VirtualPath = Path.Combine(baseVirtualPath, Name);
       Extention = Path.GetExtension(filePath);
       var nameWithoutExtention = Path.GetFileNameWithoutExtension(filePath);
       var matchResult = _pattern.Match(nameWithoutExtention);
