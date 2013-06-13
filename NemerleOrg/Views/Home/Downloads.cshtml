@@ -1,11 +1,19 @@
 ﻿@model DownloadsViewModel
 @{
   ViewBag.Title = "Downloads";
+  var versionGroups = Model.Artifacts.GroupBy(_ => _.Version).OrderByDescending(_ => _.Key).ToArray();
 }
 <h2>Downloads</h2>
-@foreach (var versionGroup in Model.Artifacts.GroupBy(_ => _.Version).OrderByDescending(_ => _.Key))
+@if (versionGroups.Length > 0)
 {
-  <h3>v@(versionGroup.Key)</h3>
-  @Html.Partial("BuildArtifactTable", versionGroup);
-  @Html.ActionLink("[History]", "BuildHistory", "Home", new { major = versionGroup.Key.Major, minor = versionGroup.Key.Minor }, new { })
+  foreach (var versionGroup in versionGroups)
+  {
+    <h3>v@(versionGroup.Key)</h3>
+    @Html.Partial("BuildArtifactTable", versionGroup);
+    @Html.ActionLink("[History]", "BuildHistory", "Home", new { major = versionGroup.Key.Major, minor = versionGroup.Key.Minor }, new { })
+  }
+}
+else
+{
+  <span>No downloads currently available.</span>
 }

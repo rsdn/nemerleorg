@@ -24,6 +24,9 @@ namespace NemerleOrg.Code
 
     private BuildArtifactFile[] GetArtifacts()
     {
+      if (!Directory.Exists(Path))
+        return new BuildArtifactFile[0];
+
       var paths = Directory.GetFiles(Path);
       return Array.ConvertAll(paths, path => new BuildArtifactFile(this, path));
     }

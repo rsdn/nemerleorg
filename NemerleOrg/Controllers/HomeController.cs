@@ -115,7 +115,7 @@ namespace NemerleOrg.Controllers
       }
 
       var result = artifacts.ToArray();
-      HttpContext.Cache.Insert(cacheKey, result, new CacheDependency(MvcApplication.TeamCityProjectPath));
+      HttpContext.Cache.Insert(cacheKey, result, Directory.Exists(MvcApplication.TeamCityProjectPath) ? new CacheDependency(MvcApplication.TeamCityProjectPath) : null);
       return result;
     }
 
@@ -127,10 +127,8 @@ namespace NemerleOrg.Controllers
         return (BuildConfiguration)cachedResult;
 
       var result = new BuildConfiguration(Path.Combine(MvcApplication.TeamCityProjectPath, name));
-      HttpContext.Cache.Insert(cacheKey, result, new CacheDependency(result.Path));
+      HttpContext.Cache.Insert(cacheKey, result, Directory.Exists(result.Path) ? new CacheDependency(result.Path) : null);
       return result;
     }
-
-    public const string ArtifactsStoragePath = "~/Static/Downloads";
   }
 }

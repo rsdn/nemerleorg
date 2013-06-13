@@ -21,6 +21,9 @@ namespace NemerleOrg.Code
 
     private BuildResult[] GetResults()
     {
+      if (!Directory.Exists(Path))
+        return new BuildResult[0];
+
       var paths = Directory.GetDirectories(Path);
       return Array.ConvertAll(paths, path => new BuildResult(this, path));
     }
