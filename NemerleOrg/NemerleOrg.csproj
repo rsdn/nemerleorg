@@ -181,7 +181,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Static\Cache\" />
-    <Folder Include="Static\Downloads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

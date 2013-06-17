@@ -115,7 +115,7 @@ namespace NemerleOrg.Controllers
       }
 
       var result = artifacts.ToArray();
-      HttpContext.Cache.Insert(cacheKey, result, Directory.Exists(MvcApplication.TeamCityProjectPath) ? new CacheDependency(MvcApplication.TeamCityProjectPath) : null);
+      HttpContext.Cache.Insert(cacheKey, result, Directory.Exists(MvcApplication.TeamCityProjectPath) ? new CacheDependency(MvcApplication.TeamCityProjectPath) : null, DateTime.Now.AddMinutes(15), Cache.NoSlidingExpiration);
       return result;
     }
 
@@ -127,7 +127,7 @@ namespace NemerleOrg.Controllers
         return (BuildConfiguration)cachedResult;
 
       var result = new BuildConfiguration(Path.Combine(MvcApplication.TeamCityProjectPath, name));
-      HttpContext.Cache.Insert(cacheKey, result, Directory.Exists(result.Path) ? new CacheDependency(result.Path) : null);
+      HttpContext.Cache.Insert(cacheKey, result, Directory.Exists(result.Path) ? new CacheDependency(result.Path) : null, DateTime.Now.AddMinutes(15), Cache.NoSlidingExpiration);
       return result;
     }
   }
