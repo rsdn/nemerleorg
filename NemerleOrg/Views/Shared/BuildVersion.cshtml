@@ -1,0 +1,5 @@
+﻿@model IGrouping<Version, BuildArtifactFile>
+@{
+  var timestamp = Model.SelectMany(g => g.BuildResult.Artifacts).Max(a => a.Timestamp);
+}
+<h3>v@(Model.Key) (@(timestamp.ToString("yyyy-MM-dd")))</h3>

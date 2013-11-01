@@ -206,6 +206,9 @@
   <ItemGroup>
     <Content Include="Views\Banners\Cache.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\BuildVersion.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

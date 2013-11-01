@@ -15,14 +15,17 @@ namespace NemerleOrg.Code
     public Version Version { get; private set; }
     public string Extention { get; private set; }
     public string Name { get; private set; }
+    public DateTime Timestamp { get; private set; }
     public string FilePath { get; private set; }
 
     public BuildArtifactFile(BuildResult buildResult, string filePath)
     {
       BuildResult = buildResult;
       FilePath = filePath;
-      Name = Path.GetFileName(filePath);
-      Extention = Path.GetExtension(filePath);
+      var fileInfo = new FileInfo(filePath);
+      Name = fileInfo.Name;
+      Extention = fileInfo.Extension;
+      Timestamp = fileInfo.LastWriteTimeUtc;
       var nameWithoutExtention = Path.GetFileNameWithoutExtension(filePath);
       var matchResult = _pattern.Match(nameWithoutExtention);
       if (matchResult.Success)
