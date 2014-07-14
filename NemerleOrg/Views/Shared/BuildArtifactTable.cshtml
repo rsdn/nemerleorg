@@ -40,7 +40,14 @@
       break;
 
     case "net-4.0":
-      <a href="@link">Installer for .NET 4.0 / VisualStudio 2010 (@b.Extention)</a>
+      if(b.Version.Build < 363)
+      {
+        <a href="@link">Installer for .NET 4.0 / VisualStudio 2010 (@b.Extention)</a>
+      }
+      else
+      {
+        <a href="@link">Installer for .NET 4.0 / VisualStudio 2010, 2012, 2013 (@b.Extention)</a>
+      }
       break;
 
     case "net-4.5":
@@ -54,24 +61,24 @@
 }
 
 @helper FormatBinariesLink(BuildArtifactFile b)
-{
-  var link = Url.Action("Download", "Home", new { buildConfiguration = b.BuildResult.Configuration.Name, buildId = b.BuildResult.BuildId, name = b.Name });
-  switch (b.Platform)
   {
-    case "net-3.5":
+    var link = Url.Action("Download", "Home", new { buildConfiguration = b.BuildResult.Configuration.Name, buildId = b.BuildResult.BuildId, name = b.Name });
+    switch (b.Platform)
+    {
+      case "net-3.5":
       <a href="@link">Binaries for .NET 3.5 (@b.Extention)</a>
-      break;
+                                        break;
 
-    case "net-4.0":
+      case "net-4.0":
       <a href="@link">Binaries for .NET 4.0 (@b.Extention)</a>
-      break;
+                                        break;
 
-    case "net-4.5":
+      case "net-4.5":
       <a href="@link">Binaries for .NET 4.5 (@b.Extention)</a>
-      break;
+                                        break;
 
-    default:
+      default:
       <a href="@link">@b.Name</a>
-      break;
-  }
+                 break;
+    }
 }
