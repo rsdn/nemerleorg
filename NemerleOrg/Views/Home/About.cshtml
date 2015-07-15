@@ -150,7 +150,7 @@ module Program
     
     public SayHello() : void 
     {
-      HelloHandler($"Hello, $Name!");
+      HelloHandler?.Invoke($"Hello, $Name!");
     }
     
     public static Test() : void
